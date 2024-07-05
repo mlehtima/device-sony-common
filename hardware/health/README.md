@@ -22,7 +22,7 @@ For SODP, that file is in [device-sony-common/vintf/manifest.xml][sodp-manifest]
     <hal format="hidl">
         <name>android.hardware.health</name>
         <transport>hwbinder</transport>
-        <version>2.0</version>
+        <version>2.1</version>
         <interface>
             <name>IHealth</name>
             <instance>default</instance>
@@ -30,13 +30,13 @@ For SODP, that file is in [device-sony-common/vintf/manifest.xml][sodp-manifest]
     </hal>
 ```
 
-Add android.hardware.health@2.0-service-.sony to `PRODUCT_PACKAGES` and remove
+Add android.hardware.health@2.1-service-.sony to `PRODUCT_PACKAGES` and remove
 the obsolete backup healthd instance that is shipped by default.  
 For SODP, that is done in `common-treble.mk`:
 ```
 # Health (in addition to own board libhealth)
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-service.sony
+    android.hardware.health@2.1-service.sony
 # Remove deprecated backup healthd
 DEVICE_FRAMEWORK_MANIFEST_FILE += \
     system/libhidl/vintfdata/manifest_healthd_exclude.xml
@@ -70,17 +70,17 @@ implementation.
 Relevant files and folders:
 
 - system/core/healthd/
-- hardware/interfaces/health/2.0/
+- hardware/interfaces/health/2.1/
 - frameworks/native/services/batteryservice/include/batteryservice/BatteryService.h
 - frameworks/native/services/sensorservice/BatteryService.h
 - For the wakeup timers:
   - frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java
   - frameworks/base/services/core/jni/com_android_server_AlarmManagerService.cpp
   - kernel: fs/timerfd.c for timerfd_create() from healthd_common.cpp, included
-    through the android.hardware.health@2.0-impl shared_lib
+    through the android.hardware.health@2.1-impl shared_lib
 - Storage-related:
-  - hardware/interfaces/health/2.0/IHealth.hal
-  - hardware/interfaces/health/2.0/types.hal
+  - hardware/interfaces/health/2.1/IHealth.hal
+  - hardware/interfaces/health/2.1/types.hal
   - system/core/storaged/storaged_diskstats.cpp
 
 ## Terminology
@@ -119,8 +119,8 @@ Relevant files and folders:
 - [What is CC/CV mode?](http://www.bestgopower.com/faq/27-what-is-cc-cv-mode.html)
 
 <!-- Markdown link references -->
-[health-ref]: https://source.android.com/reference/hidl/android/hardware/health/2.0/IHealth
-[guide]: https://android.googlesource.com/platform/hardware/interfaces/+/master/health/2.0/
+[health-ref]: https://source.android.com/reference/hidl/android/hardware/health/2.1/IHealth
+[guide]: https://android.googlesource.com/platform/hardware/interfaces/+/master/health/2.1/
 [vintf-manifest]: https://source.android.com/devices/architecture/vintf/objects.html#device-manifest-file
 [sodp-manifest]: https://github.com/sonyxperiadev/device-sony-common/blob/5945d6aff99a8188554c3e4f06032d254138db00/vintf/manifest.xml
 [pmic]: https://en.wikipedia.org/wiki/Power_management_integrated_circuit

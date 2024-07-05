@@ -1,6 +1,6 @@
 cc_binary {
-    name: "android.hardware.health@2.0-service.sony",
-    init_rc: ["android.hardware.health@2.0-service.sony.rc"],
+    name: "android.hardware.health@2.1-service.sony",
+    init_rc: ["android.hardware.health@2.1-service.sony.rc"],
     vendor: true,
     relative_install_path: "hw",
     cflags: [
@@ -15,7 +15,7 @@ cc_binary {
         "LearnedCapacityBackupRestore.cpp",
     ],
     static_libs: [
-        "android.hardware.health@2.0-impl",
+        "android.hardware.health@2.1-impl",
         "android.hardware.health@1.0-convert",
         "libbatterymonitor",
         // libhealthservice is needed for health_service_main()
@@ -24,7 +24,7 @@ cc_binary {
         "libhealthstoragedefault",
     ],
     shared_libs: [
-        "android.hardware.health@2.0",
+        "android.hardware.health@2.1",
         "libbase",
         "libcutils",
         "libhidlbase",
@@ -37,6 +37,6 @@ cc_binary {
     ],
 
     vintf_fragments: [
-        "manifest_android.hardware.health@2.0.xml",
+        "manifest_android.hardware.health@2.1.xml",
     ],
 }

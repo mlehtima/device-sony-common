@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.health@2.0-service.sony"
+#define LOG_TAG "android.hardware.health@2.1-service.sony"
 
 /* For health_service_main() */
 #include <health2/service.h>
@@ -36,7 +36,7 @@ static CycleCountBackupRestore ccBackupRestore;
 static LearnedCapacityBackupRestore lcBackupRestore;
 }  // namespace
 
-/* healthd_board_init() is called from health@2.0:Health.cpp when
+/* healthd_board_init() is called from health@2.1:Health.cpp when
  * the IHealth object is initialized */
 void healthd_board_init(struct healthd_config *) {
     ccBackupRestore.Restore();
@@ -60,13 +60,13 @@ int main() {
     return health_service_main("default");
 
     /* health_service_main() from libhealthservice:HealthServiceCommon.cpp */
-    /* sets: healthd_mode_ops = &healthd_mode_service_2_0_ops, */
-    /* returns healthd_main() from health@2.0/healthd_common.cpp */
+    /* sets: healthd_mode_ops = &healthd_mode_service_2_1_ops, */
+    /* returns healthd_main() from health@2.1/healthd_common.cpp */
     /* healthd_main() runs healthd_init(): */
     /*  -> healthd_mode_ops->init(&healthd_config), */
     /*     ( + wakealarm_init(), uevent_init() ) */
-    /* healthd_mode_ops->init is HealthServiceCommon.cpp:healthd_mode_service_2_0_init() */
-    /* healthd_mode_service_2_0_init() then starts up the IHealth instance via */
+    /* healthd_mode_ops->init is HealthServiceCommon.cpp:healthd_mode_service_2_1_init() */
+    /* healthd_mode_service_2_1_init() then starts up the IHealth instance via */
     /* IHealth service = Health::initInstance(config); */
     /* After healthd_init() is done, healthd_common.cpp starts healthd_mainloop() */
     /* The mainloop then sets up some polling and runs forever, reacting to */
